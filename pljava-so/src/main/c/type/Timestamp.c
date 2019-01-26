@@ -8,8 +8,9 @@
  *
  * @author Thomas Hallgren
  */
+#include <sys/time.h>
+
 #include <postgres.h>
-#include <utils/nabstime.h>
 #include <utils/datetime.h>
 
 #include "pljava/Backend.h"
@@ -187,7 +188,7 @@ int32 Timestamp_getTimeZone_dd(double dt)
 
 int32 Timestamp_getCurrentTimeZone(void)
 {
-	return Timestamp_getTimeZone((pg_time_t)GetCurrentAbsoluteTime());
+	return Timestamp_getTimeZone((pg_time_t)time(NULL));
 }
 
 extern void Timestamp_initialize(void);

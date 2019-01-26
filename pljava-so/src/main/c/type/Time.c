@@ -6,8 +6,9 @@
  *
  * @author Thomas Hallgren
  */
+#include <sys/time.h>
+
 #include <postgres.h>
-#include <utils/nabstime.h>
 #include <utils/date.h>
 #include <utils/datetime.h>
 
@@ -29,7 +30,7 @@ static jmethodID s_Time_getTime;
 
 static jlong msecsAtMidnight(void)
 {
-	AbsoluteTime now = GetCurrentAbsoluteTime() / 86400;
+	pg_time_t now = (pg_time_t)time(NULL) / 86400;
 	return INT64CONST(1000) * (jlong)(now * 86400);
 }
 
