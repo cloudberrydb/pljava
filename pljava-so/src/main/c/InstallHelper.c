@@ -18,6 +18,7 @@
 #include <access/xact.h>
 #include <catalog/pg_language.h>
 #include <catalog/pg_proc.h>
+#include <catalog/pg_namespace.h>
 #if PG_VERSION_NUM >= 90100
 #include <commands/extension.h>
 #endif
@@ -214,7 +215,7 @@ static void getExtensionLoadPath()
 	 * working model" and that code is a lot more fiddly than you would guess.
 	 */
 	if ( InvalidOid == get_relname_relid(LOADPATH_TBL_NAME,
-		GetSysCacheOid1(NAMESPACENAME, CStringGetDatum("sqlj"))) )
+		GetSysCacheOid1(NAMESPACENAME, Anum_pg_namespace_oid, CStringGetDatum("sqlj"))) )
 		return;
 
 	SPI_connect();

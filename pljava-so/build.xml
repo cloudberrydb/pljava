@@ -66,8 +66,8 @@
 					<replaceregex pattern="devel.*|alpha.*|beta.*|rc.*$"
 						replace="\.99" flags="si" />
 					<containsregex
-						pattern="^[^\d]*+(\d++)\.(\d++)\.(\d++).*$"
-						replace="pg\1.\2" />
+						pattern="^[^\d]*(\d+).*$"
+						replace="pg\1" />
 				</tokenfilter>
 			</filterchain>
 		</loadresource>
