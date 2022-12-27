@@ -13,7 +13,7 @@ source "${TOP_DIR}/gpdb_src/concourse/scripts/common.bash"
 source "${TOP_DIR}/pljava_src/concourse/scripts/common.bash"
 
 function _main() {
-local gphome=/usr/local/greenplum-db-devel
+local gphome=${INSTALL_DIR:-/usr/local/cloudberry-db-devel}
   case "$OSVER" in
     suse11)
       # install dependencies
@@ -42,7 +42,7 @@ local gphome=/usr/local/greenplum-db-devel
     tar xvf apache-maven-3.5.4-bin.tar.gz
     mv apache-maven-3.5.4  /usr/local/apache-maven
     export M2_HOME=/usr/local/apache-maven
-    export M2=$M2_HOME/bin 
+    export M2=$M2_HOME/bin
     export PATH=$M2:$PATH
 
     pushd pljava_src

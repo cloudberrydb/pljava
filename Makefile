@@ -40,9 +40,14 @@ REGRESS_DIR = $(top_builddir)
 
 .PHONY: build installdirs install uninstall test localconfig targetconfig installcheck targetcheck release
 	
-build:
+install-nar-snapshot:
+	curl -O https://artifactory.hashdata.xyz/artifactory/greenplum/cbdb-build-dependencies/nar-maven-plugin.tar.gz
+	tar xzf nar-maven-plugin.tar.gz
+	(cd nar-maven-plugin ; mvn)
+
+build: install-nar-snapshot
 	mvn clean install
-	cp $(PROJDIR)/pljava-so/target/nar/pljava-so-$(PLJAVA_OSS_VERSION)-amd64-Linux-gpp-plugin/lib/amd64-Linux-gpp/plugin/libpljava-so-$(PLJAVA_OSS_VERSION).so $(PROJDIR)/$(MODULE_big).so
+	find $(PROJDIR)/pljava-so/target/nar/ -name "libpljava-so-$(PLJAVA_OSS_VERSION).so" -exec cp {} $(PROJDIR)/$(MODULE_big).so \;
 	cp $(PROJDIR)/pljava/target/pljava-$(PLJAVA_OSS_VERSION).jar $(PROJDIR)/target/pljava.jar
 	cp $(PROJDIR)/pljava-examples/target/pljava-examples-$(PLJAVA_OSS_VERSION).jar $(PROJDIR)/target/examples.jar
 

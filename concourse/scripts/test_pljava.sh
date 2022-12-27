@@ -8,7 +8,7 @@ source "${TOP_DIR}/gpdb_src/concourse/scripts/common.bash"
 source "${TOP_DIR}/pljava_src/concourse/scripts/common.bash"
 # for centos and suse, the compiled GPHOME is /usr/local/greenplum-db-devel
 # but for compiled ubuntu16, it is /usr/local/gpdb. ;-(
-gphome=/usr/local/greenplum-db-devel
+gphome=${INSTALL_DIR:-/usr/local/cloudberry-db-devel}
 
 function install_openssl(){
     pushd /opt

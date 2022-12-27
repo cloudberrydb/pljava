@@ -24,7 +24,8 @@ distro: $(TARGET_GPPKG)
 	dpkg-deb --build $(PWD)/UBUNTU "$(PLJAVA_DEB)"
 
 gppkg_spec.yml: gppkg_spec.yml.in
-	cat $< | sed "s/#arch/$(ARCH)/g" | sed "s/#os/$(OS)/g" | sed 's/#gpver/$(GP_VERSION_NUM)/g' | sed "s/#gppkgver/$(PLJAVA_PIVOTAL_VERSION)/g" > $@
+	cat $< | sed "s/#arch/$(ARCH)/g" | sed "s/#os/$(OS)/g" | sed "s/#gpver/$(GP_VERSION_NUM)/g" \
+		   | sed "s/#gppkgver/$(PLJAVA_PIVOTAL_VERSION)/g" | sed "s/#jre_arch/$(ARCH)/"> $@
 
 %.gppkg: gppkg_spec.yml $(PLJAVA_DEB) $(DEPENDENT_DEBS)
 	rm -rf gppkg

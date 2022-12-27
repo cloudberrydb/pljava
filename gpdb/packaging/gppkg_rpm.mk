@@ -5,6 +5,10 @@ include $(PGXS)
 include $(PLJAVA_DIR)/release.mk
 GP_VERSION_NUM := $(GP_MAJORVERSION)
 
+jre_arch=$(ARCH)
+ifeq ($(ARCH), x86_64)
+jre_arch=amd64
+endif
 PLJAVA_RPM_FLAGS=--define 'pljava_dir $(PLJAVA_DIR)' --define 'pljava_ver $(PLJAVA_PIVOTAL_VERSION)' --define 'pljava_rel $(PLJAVA_PIVOTAL_RELEASE)'
 PLJAVA_RPM=pljava-$(PLJAVA_PIVOTAL_VERSION)-$(PLJAVA_PIVOTAL_RELEASE).$(ARCH).rpm
 SPEC_NAME=pljava.spec
@@ -23,7 +27,8 @@ distro: $(TARGET_GPPKG)
 	rm -rf RPMS BUILD SPECS
 
 gppkg_spec.yml: gppkg_spec.yml.in
-	cat $< | sed "s/#arch/$(ARCH)/g" | sed "s/#os/$(OS)/g" | sed 's/#gpver/$(GP_VERSION_NUM)/g' | sed "s/#gppkgver/$(PLJAVA_PIVOTAL_VERSION)/g"> $@ > $@
+	cat $< | sed "s/#arch/$(ARCH)/g" | sed "s/#os/$(OS)/g" | sed "s/#gpver/$(GP_VERSION_NUM)/g" \
+		   | sed "s/#gppkgver/$(PLJAVA_PIVOTAL_VERSION)/g" | sed "s/#jre_arch/$(jre_arch)/" > $@
 
 %.gppkg: $(PLJAVA_RPM) gppkg_spec.yml $(PLJAVA_RPM) $(DEPENDENT_RPMS)
 	rm -rf gppkg
