@@ -60,7 +60,7 @@ function prep_jdk_install() {
 		    ;;
 		esac
 	    ;;
-	  centos7)
+	  centos7|kylin10)
 	    case "$JDK_VERSION" in
 		  8)
 		    yum install -y java-1.8.0-openjdk-devel

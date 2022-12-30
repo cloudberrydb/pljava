@@ -27,7 +27,7 @@ local gphome=${INSTALL_DIR:-/usr/local/cloudberry-db-devel}
       apt update
       apt install -y wget
       ;;
-  centos* | rhel*)
+  centos* | rhel* | kylin*)
       yum install -y wget
       ;;
   esac
@@ -38,9 +38,9 @@ local gphome=${INSTALL_DIR:-/usr/local/cloudberry-db-devel}
     tar zxf bin_gpdb/*.tar.gz -C $gphome
     source $gphome/greenplum_path.sh
 
-    wget http://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
-    tar xvf apache-maven-3.5.4-bin.tar.gz
-    mv apache-maven-3.5.4  /usr/local/apache-maven
+    wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+    tar xvf apache-maven-3.8.6-bin.tar.gz
+    mv apache-maven-3.8.6  /usr/local/apache-maven
     export M2_HOME=/usr/local/apache-maven
     export M2=$M2_HOME/bin
     export PATH=$M2:$PATH

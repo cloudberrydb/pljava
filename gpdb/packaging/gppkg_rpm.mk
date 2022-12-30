@@ -11,6 +11,9 @@ jre_arch=amd64
 endif
 PLJAVA_RPM_FLAGS=--define 'pljava_dir $(PLJAVA_DIR)' --define 'pljava_ver $(PLJAVA_PIVOTAL_VERSION)' --define 'pljava_rel $(PLJAVA_PIVOTAL_RELEASE)'
 PLJAVA_RPM=pljava-$(PLJAVA_PIVOTAL_VERSION)-$(PLJAVA_PIVOTAL_RELEASE).$(ARCH).rpm
+ifeq ($(OS), kylin10)
+	PLJAVA_RPM=pljava-$(PLJAVA_PIVOTAL_VERSION)-$(PLJAVA_PIVOTAL_RELEASE).ky10.$(ARCH).rpm
+endif
 SPEC_NAME=pljava.spec
 TARGET_GPPKG=$(PLJAVA_GPPKG)
 PWD=$(shell pwd)
