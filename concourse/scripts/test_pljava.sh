@@ -65,7 +65,7 @@ function prepare_test(){
 
         source ${TOP_DIR}/gpdb_src/gpAux/gpdemo/gpdemo-env.sh
         source $gphome/greenplum_path.sh
-        gppkg -i pljava_bin/pljava-*.gppkg
+        gppkg -i pljava_gppkg/pljava-*.gppkg
         source $gphome/greenplum_path.sh
         gpstop -arf
 
@@ -85,23 +85,12 @@ function prepare_test(){
 
 }
 
-function test() {
+function run_test_pl() {
 	su gpadmin -c "bash /home/gpadmin/test.sh $(pwd)"
 }
 
 function setup_gpadmin_user() {
-    case "$OSVER" in
-        suse*)
-        ${TOP_DIR}/gpdb_src/concourse/scripts/setup_gpadmin_user.bash "sles"
-        ;;
-        centos* | rhel*)
-        ${TOP_DIR}/gpdb_src/concourse/scripts/setup_gpadmin_user.bash "centos"
-        ;;
-        ubuntu*)
-        ${TOP_DIR}/gpdb_src/concourse/scripts/setup_gpadmin_user.bash "ubuntu"
-        ;;
-        *) echo "Unknown OS: $OSVER"; exit 1 ;;
-    esac
+	${TOP_DIR}/gpdb_src/concourse/scripts/setup_gpadmin_user.bash
 }
 
 function _main() {
@@ -111,7 +100,7 @@ function _main() {
 
     time make_cluster
     time prepare_test
-    time test
+    time run_test_pl
 
 }
 
