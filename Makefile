@@ -41,8 +41,9 @@ REGRESS_DIR = $(top_builddir)
 .PHONY: build installdirs install uninstall test localconfig targetconfig installcheck targetcheck release
 	
 install-nar-snapshot:
-	curl -O https://artifactory.hashdata.xyz/artifactory/greenplum/cbdb-build-dependencies/nar-maven-plugin.tar.gz
+	curl -o nar-maven-plugin.tar.gz https://codeload.github.com/maven-nar/nar-maven-plugin/tar.gz/refs/tags/nar-maven-plugin-3.5.2
 	tar xzf nar-maven-plugin.tar.gz
+	mv nar-maven-plugin-nar-maven-plugin-3.5.2 nar-maven-plugin
 	(cd nar-maven-plugin ; mvn)
 
 build: install-nar-snapshot
