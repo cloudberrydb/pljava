@@ -49,6 +49,7 @@
 					<plugin>
 						<groupId>com.github.maven-nar</groupId>
 						<artifactId>nar-maven-plugin</artifactId>
+						<version>3.10.1</version>
 						<configuration>
 							<linker>
 								<libs combine.children='append'>
@@ -185,7 +186,7 @@
 					<plugin>
 						<groupId>com.github.maven-nar</groupId>
 						<artifactId>nar-maven-plugin</artifactId>
-						<version>3.10.2-SNAPSHOT</version>
+						<version>3.10.1</version>
 						<configuration>
 							<c>
 								<options>
@@ -220,7 +221,7 @@
 					<plugin>
 						<groupId>com.github.maven-nar</groupId>
 						<artifactId>nar-maven-plugin</artifactId>
-						<version>3.10.2-SNAPSHOT</version>
+						<version>3.10.1</version>
 						<configuration>
 							<linker>
 								<options combine.children='append'>
@@ -304,7 +305,7 @@
 			<plugin>
 				<groupId>com.github.maven-nar</groupId>
 				<artifactId>nar-maven-plugin</artifactId>
-				<version>3.10.2-SNAPSHOT</version>
+				<version>3.10.1</version>
 				<extensions>true</extensions>
 
 				<configuration>
@@ -409,7 +410,7 @@
 									<pluginExecutionFilter>
 										<groupId>com.github.maven-nar</groupId>
 										<artifactId>nar-maven-plugin</artifactId>
-										<version>3.10.2-SNAPSHOT</version>
+										<version>3.10.1</version>
 										<goals>
 											<goal>nar-compile</goal>
 											<goal>nar-download</goal>
